@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone, Clock, SendHorizontal } from 'lucide-react';
 export default function ContactSection() {
   const accentGold = 'text-[#e0ac2b]';
   const accentGoldBg = 'bg-[#e0ac2b]';
-  const mainText = 'text-white';
+  //const mainText = 'text-white';
   const subText = 'text-gray-400';
   const boxBg = 'bg-[#161616]'; // Slightly lighter dark for info boxes
   const inputStyle = 'w-full bg-transparent border-b border-neutral-700 py-4 text-white placeholder-neutral-600 focus:border-[#e0ac2b] outline-none transition';

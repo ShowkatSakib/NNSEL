@@ -7,6 +7,7 @@ function App() {
     <div>
       <h1>NNSEL Website</h1>
        <Home /> 
+    
     </div>
   );
 }
