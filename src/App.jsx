@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HeroSlider from './components/HeroSlider';
+import NewsSection from './components/NewsSection';
+import ArticlePage from './pages/ArticlePage';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
+import TeamSection from './components/Teamsection';
+import ITPage from './pages/ITPage';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+// Home page — all sections
+function HomePage() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <HeroSlider />
+      <TeamSection/>
+      <NewsSection />
+      <ContactSection/>
+      <Footer/>
 
-export default App
+    </>
+  );
+}
+ 
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div style={{ background: '#0a0a0a', color: '#fff', minHeight: '100vh' }}>
+        <Navbar />
+        <Routes>
+          <Route path="/"               element={<HomePage />} />
+          <Route path="/blogs/:slug"    element={<ArticlePage />} />
+          <Route path="/it"             element={<ITPage />} />
+          <Route path="/interior-design" element={<div style={{ paddingTop: '120px', textAlign: 'center', color: '#fff', minHeight: '60vh' }}><h1 style={{ fontFamily: "'Barlow', sans-serif", color: '#d4a017' }}>Interior Design</h1><p style={{ color: 'rgba(255,255,255,0.5)', marginTop: '1rem' }}>Coming soon...</p></div>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
+ 
+
+
+
+
+
