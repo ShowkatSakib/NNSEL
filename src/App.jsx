@@ -1,15 +1,11 @@
-import "./App.css";
-// You can import your Home page here soon!
-// import Home from "./pages/home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <h1>NNSEL Website</h1>
-       <Home /> 
-    
-    </div>
-  );
+    <>
+      <About />
+      <Contact />
+    </>
+  )
 }
-
-export default App;

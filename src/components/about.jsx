@@ -1,277 +1,192 @@
-import React, { useState } from 'react';
-import { ChevronRight, Building2, Award, MapPin, Users } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
 
-const GOLD = '#D4A574';
-const DARK_BG = '#0A0A0A';
+export default function About() {
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-export default function AboutSection() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const stats = [
-    { icon: Building2, label: 'Projects', value: '14+' },
-    { icon: Award, label: 'Client Satisfaction', value: '98%' },
-    { icon: MapPin, label: 'Prime Locations', value: '4+' },
-    { icon: Users, label: 'Years of Excellence', value: '9+' },
-  ];
-
-  const coreValues = [
-    {
-      title: 'Architectural Excellence',
-      description: 'We blend innovative design with timeless construction principles to create spaces that inspire and endure.',
-      icon: '🏗️',
-    },
-    {
-      title: 'Quality Craftsmanship',
-      description: 'Every detail matters. From foundation to finish, we maintain the highest standards of construction excellence.',
-      icon: '⚙️',
-    },
-    {
-      title: 'Client-Centric Vision',
-      description: 'Your dream becomes our blueprint. We listen, understand, and deliver properties that exceed expectations.',
-      icon: '👥',
-    },
-    {
-      title: 'Sustainable Development',
-      description: 'We build responsibly for today and future generations, balancing growth with environmental consciousness.',
-      icon: '🌱',
-    },
-  ];
-
-  const properties = [
-    { name: 'Premium Residential', count: '8 projects', location: 'Banani, Basundhara' },
-    { name: 'Commercial Spaces', count: '4 projects', location: 'Prime Dhaka Locations' },
-    { name: 'Urban Development', count: '2 projects', location: 'Strategic Markets' },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div style={{ backgroundColor: DARK_BG }} className="min-h-screen text-white">
-      {/* Hero Section with Building Image */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Top accent line */}
-          <div className="h-1 w-20 mb-6" style={{ backgroundColor: GOLD }}></div>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative w-full bg-[#0a0a0a] text-white overflow-hidden py-24 md:py-36"
+      style={{ fontFamily: "'Onest', system-ui, sans-serif" }}
+    >
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* Section label */}
-          <p
-            className="text-sm font-semibold uppercase tracking-widest mb-8"
-            style={{ color: GOLD }}
+          {/* LEFT: Images */}
+          <div
+            className={`relative transition-all duration-1000 ${
+              visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+            }`}
           >
-            Who We Are
-          </p>
+            {/* Main Image Container */}
+            <div className="relative w-full max-w-[450px] mx-auto lg:ml-auto" style={{ aspectRatio: "4/5" }}>
+              {/* Top Left Yellow Bracket */}
+              <div
+                className="absolute -top-6 -left-6 w-20 h-20"
+                style={{ borderTop: "2px solid #eab308", borderLeft: "2px solid #eab308" }}
+                aria-hidden="true"
+              />
+              {/* Bottom Right Yellow Bracket */}
+              <div
+                className="absolute -bottom-6 -right-6 w-20 h-20"
+                style={{ borderBottom: "2px solid #eab308", borderRight: "2px solid #eab308" }}
+                aria-hidden="true"
+              />
 
-          {/* Grid: Image + Text */}
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Building Image */}
-            <div className="border md:order-2" style={{ borderColor: GOLD }}>
+              {/* Main Building Image */}
               <img
-                src="nn.jpg"
-                alt="NNSEL - Premium Residential Property"
-                className="w-full h-auto object-cover"
+                src="/images/nn.jpg"
+                alt="NNSEL Building Main"
+                className="w-full h-full object-cover relative z-10"
+              />
+
+              {/* Smaller Overlapping Image */}
+              <div
+                className="absolute z-20 bg-[#111]"
+                style={{
+                  bottom: "-48px",
+                  left: "-64px",
+                  width: "55%",
+                  aspectRatio: "3/4",
+                  border: "8px solid #0a0a0a",
+                }}
+              >
+                <img
+                  src="/images/nn.jpg"
+                  alt="NNSEL Building Detail"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: Content */}
+          <div
+            className={`transition-all duration-1000 delay-200 ${
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+          >
+            {/* Eyebrow */}
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-12 bg-[#eab308]" style={{ height: "2px" }} aria-hidden="true" />
+              <span
+                className="text-[#eab308] font-semibold uppercase"
+                style={{ letterSpacing: "0.2em", fontSize: "12px" }}
+              >
+                Who We Are
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h2
+              className="font-bold mb-8"
+              style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)", lineHeight: 1.1 }}
+            >
+              Crafting <br />
+              <span className="text-[#eab308]">Quality Spaces</span> <br />
+              Since 2015
+            </h2>
+
+            {/* Paragraphs */}
+            <div
+              className="space-y-6 mb-10"
+              style={{ color: "#a0a0a0", fontSize: "15px", lineHeight: "1.7" }}
+            >
+              <p>
+                NN Services &amp; Engineering Ltd NNSEL is a pioneering real estate
+                and development firm in Bangladesh, setting new benchmarks in
+                architectural design, construction, and project delivery.
+                Headquartered in Banani, a prominent corporate and commercial
+                locale in Dhaka, NNSEL draws on the expertise of its in-house
+                design professionals to craft projects that elevate the urban
+                landscape.
+              </p>
+              <p>
+                NNSEL's showcase of 14 distinguished properties across Banani,
+                Bashundhara, Savar, and Gazipur reflects our unwavering
+                commitment to creating environments that inspire and endure.
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="flex items-center gap-8 mb-10">
+              <div>
+                <p className="text-white font-bold" style={{ fontSize: "1.5rem" }}>14+</p>
+                <p
+                  className="mt-1 uppercase"
+                  style={{ color: "#a0a0a0", fontSize: "11px", letterSpacing: "0.12em" }}
+                >
+                  Projects
+                </p>
+              </div>
+              <div className="w-px h-10 bg-[#333]" />
+              <div>
+                <p className="text-white font-bold" style={{ fontSize: "1.5rem" }}>98%</p>
+                <p
+                  className="mt-1 uppercase"
+                  style={{ color: "#a0a0a0", fontSize: "11px", letterSpacing: "0.12em" }}
+                >
+                  Satisfaction
+                </p>
+              </div>
+              <div className="w-px h-10 bg-[#333]" />
+              {/* Rehab Logo */}
+              <div className="flex items-center">
+                <img src="/images/rehab.jpg" alt="REHAB" className="object-contain" style={{ height: "40px" }} />
+              </div>
+            </div>
+
+            {/* Certifications Row */}
+            <div className="flex items-center gap-6">
+              <img
+                src="/images/iso.jpg"
+                alt="ISO"
+                className="object-contain"
+                style={{ height: "32px", opacity: 0.7, transition: "opacity 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = 1)}
+                onMouseLeave={e => (e.currentTarget.style.opacity = 0.7)}
+              />
+              <img
+                src="/images/iaf.jpg"
+                alt="IAF"
+                className="object-contain"
+                style={{ height: "32px", opacity: 0.7, transition: "opacity 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = 1)}
+                onMouseLeave={e => (e.currentTarget.style.opacity = 0.7)}
+              />
+              <img
+                src="/images/bqc.jpg"
+                alt="BQC"
+                className="object-contain"
+                style={{ height: "32px", opacity: 0.7, transition: "opacity 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = 1)}
+                onMouseLeave={e => (e.currentTarget.style.opacity = 0.7)}
+              />
+              <img
+                src="/images/ias.jpg"
+                alt="IAS"
+                className="object-contain"
+                style={{ height: "32px", opacity: 0.7, transition: "opacity 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = 1)}
+                onMouseLeave={e => (e.currentTarget.style.opacity = 0.7)}
               />
             </div>
-
-            {/* Text Content */}
-            <div className="md:order-1">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-                Crafting
-                <br />
-                <span style={{ color: GOLD }}>Quality Spaces</span>
-                <br />
-                Since 2015
-              </h1>
-
-              <p className="text-base text-gray-300 mb-6 leading-relaxed">
-                NN Services & Engineering Ltd (NNSEL) is a pioneering real estate and development firm in Bangladesh, setting new benchmarks in architectural design, construction, and project delivery. Headquartered in Banani, a prominent corporate and commercial locale in Dhaka, NNSEL draws on the expertise of its in-house design professionals to craft projects that elevate the urban landscape.
-              </p>
-
-              <p className="text-sm text-gray-400 mb-8 leading-relaxed">
-                NNSEL's showcase of 14 distinguished properties across Banani, Basundhara, Savar, and Gazipur reflects our unwavering commitment to creating environments that inspire and endure.
-              </p>
-
-              <button
-                className="inline-flex items-center gap-2 font-semibold px-8 py-4 transition-all duration-300 text-black"
-                style={{ backgroundColor: GOLD }}
-                onMouseEnter={(e) => (e.target.style.opacity = '0.85')}
-                onMouseLeave={(e) => (e.target.style.opacity = '1')}
-              >
-                Explore Our Portfolio
-                <ChevronRight size={20} />
-              </button>
-            </div>
           </div>
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {stats.map((stat, idx) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={idx}
-                  className="border p-6 transition-all duration-300 hover:bg-gray-900"
-                  style={{ borderColor: GOLD }}
-                >
-                  <Icon
-                    size={32}
-                    className="mb-3"
-                    style={{ color: GOLD }}
-                  />
-                  <p className="text-2xl sm:text-3xl font-bold mb-2">{stat.value}</p>
-                  <p className="text-sm text-gray-400">{stat.label}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gray-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <div className="h-1 w-20 mb-4" style={{ backgroundColor: GOLD }}></div>
-            <h2 className="text-3xl sm:text-4xl font-bold">Built on Values</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {coreValues.map((value, idx) => (
-              <div
-                key={idx}
-                className="border p-8 transition-all duration-300 hover:bg-gray-900"
-                style={{ borderColor: GOLD }}
-              >
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold mb-3" style={{ color: GOLD }}>
-                  {value.title}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Properties Showcase */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16">
-            <div className="h-1 w-20 mb-4" style={{ backgroundColor: GOLD }}></div>
-            <h2 className="text-3xl sm:text-4xl font-bold">Our Foundation</h2>
-            <p className="text-gray-400 mt-4">A diverse portfolio across Bangladesh's prime markets</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {properties.map((prop, idx) => (
-              <div
-                key={idx}
-                className="border p-8 cursor-pointer transition-all duration-300"
-                style={{ borderColor: GOLD }}
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <div
-                  className={`transition-all duration-300 ${
-                    hoveredCard === idx ? 'translate-x-2' : ''
-                  }`}
-                >
-                  <h3 className="text-xl font-bold mb-2">{prop.name}</h3>
-                  <p className="text-3xl font-bold mb-4" style={{ color: GOLD }}>
-                    {prop.count}
-                  </p>
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <MapPin size={16} />
-                    <span className="text-sm">{prop.location}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gray-950 border-t" style={{ borderColor: GOLD }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Mission */}
-            <div>
-              <div className="h-1 w-20 mb-4" style={{ backgroundColor: GOLD }}></div>
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                To pioneer innovative real estate solutions that blend architectural excellence with construction mastery, creating transformative spaces that enhance the urban environment and deliver lasting value to our clients and communities.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <ChevronRight size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">Sustainable urban development</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ChevronRight size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">World-class architectural design</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ChevronRight size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">Client satisfaction excellence</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Vision */}
-            <div>
-              <div className="h-1 w-20 mb-4" style={{ backgroundColor: GOLD }}></div>
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                To be Bangladesh's most trusted real estate developer, recognized globally for creating iconic properties that set benchmarks in design innovation, construction quality, and sustainable development practices.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Award size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">ISO & REHAB certified excellence</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Award size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">Industry-leading project delivery</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Award size={20} style={{ color: GOLD }} className="mt-1 flex-shrink-0" />
-                  <span className="text-gray-300">Community & environmental stewardship</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Experience Excellence?</h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Discover how NNSEL can transform your vision into a landmark property.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              className="font-semibold px-8 py-4 transition-all duration-300 text-black"
-              style={{ backgroundColor: GOLD }}
-              onMouseEnter={(e) => (e.target.style.opacity = '0.85')}
-              onMouseLeave={(e) => (e.target.style.opacity = '1')}
-            >
-              Contact Us
-            </button>
-            <button
-              className="border font-semibold px-8 py-4 transition-all duration-300"
-              style={{ borderColor: GOLD, color: GOLD }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = 'rgba(212, 165, 116, 0.1)')}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = 'transparent')}
-            >
-              View Properties
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

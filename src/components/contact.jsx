@@ -1,127 +1,248 @@
-import React from 'react';
-import { Mail, MapPin, Phone, Clock, SendHorizontal } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
 
-export default function ContactSection() {
-  const accentGold = 'text-[#e0ac2b]';
-  const accentGoldBg = 'bg-[#e0ac2b]';
-  //const mainText = 'text-white';
-  const subText = 'text-gray-400';
-  const boxBg = 'bg-[#161616]'; // Slightly lighter dark for info boxes
-  const inputStyle = 'w-full bg-transparent border-b border-neutral-700 py-4 text-white placeholder-neutral-600 focus:border-[#e0ac2b] outline-none transition';
+export default function Contact() {
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'LOCATION',
-      text: 'House 37, Road 15, Banani, Dhaka 1213'
-    },
-    {
-      icon: Phone,
-      title: 'PHONE',
-      text: '+880 1805-047288'
-    },
-    {
-      icon: Mail,
-      title: 'EMAIL',
-      text: 'info@nnsel.com'
-    },
-    {
-      icon: Clock,
-      title: 'HOURS',
-      text: 'Sat - Thurs: 10AM - 6PM'
-    }
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const inputStyle = {
+    width: "100%",
+    background: "transparent",
+    border: "none",
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    color: "#fff",
+    fontSize: "14px",
+    padding: "16px 0",
+    outline: "none",
+    transition: "border-color 0.2s",
+    fontFamily: "'Onest', system-ui, sans-serif",
+  };
+
+  const handleFocus = (e) => (e.target.style.borderBottomColor = "#eab308");
+  const handleBlur = (e) => (e.target.style.borderBottomColor = "rgba(255,255,255,0.1)");
 
   return (
-    <div className="bg-black min-h-screen pt-10 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* SECTION HEADER */}
-        <header className="mb-20 space-y-3">
-          <div className="flex items-center gap-3">
-            <p className={`text-sm font-semibold uppercase tracking-widest ${accentGold}`}>
-              (06) —— CONTACT
-            </p>
-          </div>
-          <h1 className="text-5xl font-bold tracking-tight text-white leading-tight">
-            Let's Build <br />
-            <span className={accentGold}>Together</span>
-          </h1>
-          <p className={`${subText} max-w-xl text-base`}>
-            Ready to start your journey to a dream home? We're here to make it happen.
-          </p>
-        </header>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="relative w-full bg-[#0a0a0a] text-white py-24 md:py-36"
+      style={{ fontFamily: "'Onest', system-ui, sans-serif" }}
+    >
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
 
-        {/* CONTACT FORM */}
-        <form className="mb-16 space-y-6">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className={inputStyle}
-          />
-          <input
-            type="email"
-            placeholder="Email Address"
-            className={inputStyle}
-          />
-          <input
-            type="text"
-            placeholder="Subject"
-            className={inputStyle}
-          />
-          <textarea
-            placeholder="Your Message"
-            rows="5"
-            className={`${inputStyle} resize-none`}
-          ></textarea>
+        {/* Top Header / Eyebrow */}
+        <div className="flex items-center gap-4 mb-6">
+          <span className="text-[#eab308] font-medium" style={{ fontSize: "14px" }}>(05)</span>
+          <span className="w-12 bg-[#eab308]" style={{ height: "1px" }} aria-hidden="true" />
+          <span
+            className="text-[#eab308] font-semibold uppercase"
+            style={{ letterSpacing: "0.2em", fontSize: "11px" }}
+          >
+            Contact
+          </span>
+        </div>
 
-          <div className="pt-6">
-            <button
-              type="submit"
-              className={`w-full ${accentGoldBg} text-black font-bold uppercase py-4 flex items-center justify-center gap-2 hover:brightness-105 transition-all duration-300`}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+          {/* LEFT: Heading & Form */}
+          <div
+            className={`transition-all duration-1000 ${
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+          >
+            <h2
+              className="font-bold mb-12"
+              style={{ fontSize: "clamp(2.8rem, 5vw, 4rem)", lineHeight: 1.1 }}
             >
-              SEND MESSAGE
-              <SendHorizontal size={18} />
-            </button>
-          </div>
-        </form>
+              Let's Build <br />
+              <span className="text-[#eab308]">Together</span>
+            </h2>
 
-        {/* INFO BOXES GRID */}
-        {/* On mobile: 1 column. On desktop: 2x2 grid for usability */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {contactInfo.map((info, idx) => {
-            const Icon = info.icon;
-            return (
-              <div key={idx} className={`${boxBg} p-8 border border-neutral-800`}>
-                <div className="flex items-start gap-4">
-                  <Icon className={`${accentGold} mt-1`} size={24} />
-                  <div>
-                    <p className={`text-xs uppercase tracking-widest text-neutral-500 font-medium mb-1`}>
-                      {info.title}
-                    </p>
-                    <p className="text-white text-base font-light">
-                      {info.text}
-                    </p>
-                  </div>
-                </div>
+            <div className="flex flex-col" style={{ gap: "0px" }}>
+              <input
+                type="text"
+                placeholder="Full Name"
+                style={{ ...inputStyle }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                style={{ ...inputStyle }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                style={{ ...inputStyle }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                style={{ ...inputStyle, resize: "none", marginTop: "8px" }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="flex items-center justify-center gap-2 bg-[#eab308] text-black font-bold uppercase tracking-wider hover:bg-[#d9a306] transition-colors"
+                style={{ marginTop: "32px", padding: "16px", fontSize: "13px", width: "100%", cursor: "pointer", border: "none" }}
+              >
+                Send Message
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT: Info Cards */}
+          <div
+            className={`flex flex-col justify-between transition-all duration-1000 delay-200 ${
+              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+          >
+            {/* Subtext aligned right */}
+            <div
+              className="text-right ml-auto mb-12"
+              style={{ color: "#888", fontSize: "13px", lineHeight: "1.6", maxWidth: "320px" }}
+            >
+              <p>Ready to start your journey to a dream home? We're here to make it happen.</p>
+            </div>
+
+            {/* Grid of Cards */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              {/* Location */}
+              <ContactCard
+                icon={
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                }
+                label="Location"
+                value="House 37, Road 15, Banani, Dhaka 1213"
+              />
+
+              {/* Phone */}
+              <ContactCard
+                icon={
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                }
+                label="Phone"
+                value="+880 1805-047288"
+              />
+
+              {/* Email */}
+              <ContactCard
+                icon={
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                }
+                label="Email"
+                value="info@nnsel.com"
+              />
+
+              {/* Hours */}
+              <ContactCard
+                icon={
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                }
+                label="Hours"
+                value="Sat - Thurs: 10AM - 6PM"
+              />
+            </div>
+
+            {/* Prefer a Call Banner */}
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+              style={{
+                background: "#111",
+                border: "1px solid rgba(255,255,255,0.05)",
+                padding: "24px",
+              }}
+            >
+              <div>
+                <h4 className="text-white font-bold mb-1" style={{ fontSize: "15px" }}>
+                  Prefer a Call?
+                </h4>
+                <p style={{ color: "#888", fontSize: "12px" }}>Schedule a consultation call</p>
               </div>
-            );
-          })}
-        </div>
-
-        {/* PREFER A CALL BANNER */}
-        <div className={`${boxBg} p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border border-neutral-800`}>
-          <div>
-            <h3 className="text-xl font-bold text-white mb-1">Prefer a Call?</h3>
-            <p className={`${subText}`}>Schedule a consultation call</p>
+              <button
+                className="bg-[#eab308] text-black font-bold uppercase flex items-center gap-2 hover:bg-[#d9a306] transition-colors"
+                style={{
+                  fontSize: "13px",
+                  padding: "12px 24px",
+                  border: "none",
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                  fontFamily: "'Onest', system-ui, sans-serif",
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                Call Now
+              </button>
+            </div>
           </div>
-          <button className={`inline-flex items-center gap-3 ${accentGoldBg} text-black font-bold px-8 py-4 transition hover:brightness-105`}>
-            <Phone size={18} />
-            Call Now
-          </button>
         </div>
-
       </div>
+    </section>
+  );
+}
+
+function ContactCard({ icon, label, value }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: "#111",
+        padding: "24px",
+        border: `1px solid ${hovered ? "rgba(234,179,8,0.3)" : "rgba(255,255,255,0.05)"}`,
+        borderRadius: "2px",
+        transition: "border-color 0.2s",
+      }}
+    >
+      <div style={{ color: "#eab308", marginBottom: "16px" }}>{icon}</div>
+      <h4
+        style={{
+          color: "#555",
+          fontSize: "11px",
+          fontWeight: "700",
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          marginBottom: "8px",
+        }}
+      >
+        {label}
+      </h4>
+      <p style={{ color: "#fff", fontSize: "14px", lineHeight: "1.4" }}>{value}</p>
     </div>
   );
 }
