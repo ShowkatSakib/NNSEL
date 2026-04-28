@@ -7,12 +7,14 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import TeamSection from './components/Teamsection';
 import ITPage from './pages/ITPage';
+import FoundationSection from './components/FoundationSection';
 
 // Home page — all sections
 function HomePage() {
   return (
     <>
       <HeroSlider />
+      <FoundationSection/>
       <TeamSection/>
       <NewsSection />
       <ContactSection/>
