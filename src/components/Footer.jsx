@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useScrollTo } from '../hooks/useScrollTo';
+import { useScrollTo } from '../hooks/UseScrollTo';
 
 const F = { condensed: "'Barlow Condensed', sans-serif", body: "'Barlow', sans-serif" };
 const GOLD = '#d4a017';

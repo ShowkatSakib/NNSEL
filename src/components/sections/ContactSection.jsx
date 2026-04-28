@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useScrollTo } from '../hooks/useScrollTo';
+import { useScrollTo } from "../../hooks/useScrollTo";
 
 const F = { condensed: "'Barlow Condensed', sans-serif", body: "'Barlow', sans-serif" };
 const GOLD = '#d4a017';

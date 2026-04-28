@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useScrollTo } from '../hooks/useScrollTo';
+import { useScrollTo } from '../hooks/UseScrollTo';
 import { useEffect } from 'react';
 import { articles } from '../data/articles';
 import Footer from '../components/Footer';

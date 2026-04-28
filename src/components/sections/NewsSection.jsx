@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { articles } from '../data/articles';
+import { articles } from "../../data/articles";
 
 const F = {
   display:   "'Bebas Neue', sans-serif",
