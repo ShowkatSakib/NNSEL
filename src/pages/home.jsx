@@ -12,9 +12,7 @@ export default function Home() {
         <AboutSection />
       </div>
 
-      <div id="interior">
-        <InteriorDesignPage />
-      </div>
+     
 
       <div id="contact">
         <ContactSection />
