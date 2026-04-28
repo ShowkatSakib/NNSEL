@@ -1,5 +1,4 @@
 import HeroSlider from '../components/HeroSlider';
-import AboutSection from '../components/sections/AboutSection';
 import TeamSection from '../components/sections/TeamSection';
 import NewsSection from '../components/sections/NewsSection';
 import ContactSection from '../components/sections/ContactSection';
@@ -12,9 +11,6 @@ export default function HomePage() {
         <HeroSlider />
       </section>
 
-      <section id="about">
-        <AboutSection />
-      </section>
 
       <section id="team">
         <TeamSection />
