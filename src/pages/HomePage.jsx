@@ -1,10 +1,10 @@
-import HeroSlider from '../components/HeroSlider';
+import HeroSlider from '../components/sections/HeroSlider';
 import TeamSection from '../components/sections/TeamSection';
 import NewsSection from '../components/sections/NewsSection';
 import ContactSection from '../components/sections/ContactSection';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import FeaturedProjects from '../components/FeaturedProjects';
+import Footer from '../components/sections/Footer';
+import Navbar from '../components/sections/Navbar';
+import FeaturedProjects from '../components/sections/FeaturedProjects';
 
 const HomePage = () => {
   return (

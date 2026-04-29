@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { projects } from '../data/projects';
-import ProjectCard from '../components/ProjectCard';
-import Navbar from '../components/Navbar';
+import ProjectCard from '../components/sections/ProjectCard';
+import Navbar from '../components/sections/Navbar';
 
 const AllProjects = () => {
   const [activeType, setActiveType] = useState('Residential');
