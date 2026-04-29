@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Navbar from '../components/sections/Navbar';
-import StatusBadge from '../components/sections/StatusBadge';
+import Navbar from '../components/Navbar';
+import StatusBadge from '../components/StatusBadge';
 import { getProjectById, projects } from '../data/projects';
-import ProjectCard from '../components/sections/ProjectCard';
+import ProjectCard from '../components/ProjectCard';
 
 const ProjectDetail = () => {
   const { id } = useParams();

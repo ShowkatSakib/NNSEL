@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { featuredProjects, projects } from '../../data/projects';
+import { featuredProjects, projects } from '../data/projects';
 import ProjectCard from './ProjectCard';
 
 const FeaturedProjects = () => {
