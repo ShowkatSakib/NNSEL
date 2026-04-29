@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import FeaturedProjects from '../components/FeaturedProjects';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#0E0E0E]">
       <Navbar />
@@ -78,4 +78,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
