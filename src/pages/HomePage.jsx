@@ -2,7 +2,7 @@ import React from 'react';
 
 import AboutSection from '../components/About';
 import InteriorDesignPage from '../components/InteriorDesignPage';
-import ContactSection from '../components/Contact';
+
 
 export default function Home() {
   return (
@@ -10,12 +10,6 @@ export default function Home() {
 
       <div id="about">
         <AboutSection />
-      </div>
-
-     
-
-      <div id="contact">
-        <ContactSection />
       </div>
 
     </div>

@@ -1,39 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HeroSlider from './components/HeroSlider';
-import NewsSection from './components/NewsSection';
-import ArticlePage from './pages/ArticlePage';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
-import TeamSection from './components/Teamsection';
-import ITPage from './pages/ITPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Home page — all sections
-function HomePage() {
+// We've updated the path to look inside the "pages" folder!
+import Home from "./pages/HomePage"; 
+
+import About from "./components/About";
+
+import InteriorDesignPage from "./components/InteriorDesignPage";
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        {/* Your full scrolling landing page */}
+        <Route path="/" element={<Home/>} />
+        
+        {/* Your standalone routes */}
+        <Route path="/about" element={<About />} />
+      
+        <Route path="/interior-design" element={<InteriorDesignPage />} />
+  
 
-export default App
+      </Routes>
+    </Router>
+  );
+}
