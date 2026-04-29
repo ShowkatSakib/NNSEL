@@ -14,7 +14,12 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/about" element={
+          <div style={{ paddingTop: '120px', textAlign: 'center', color: '#fff', minHeight: '60vh' }}>
+            <h1 style={{ fontFamily: "'Barlow', sans-serif", color: '#d4a017' }}>About</h1>
+            <p style={{ color: 'rgba(255,255,255,0.5)', marginTop: '1rem' }}>Coming soon...</p>
+          </div>
+            } />
           <Route path="/projects" element={
             <div style={{ paddingTop: '120px', textAlign: 'center', color: '#fff', minHeight: '60vh' }}>
               <h1 style={{ fontFamily: "'Barlow', sans-serif", color: '#d4a017' }}>Projects</h1>

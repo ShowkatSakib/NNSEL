@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+// Option A: If images are in src/assets/team/
+import falguni from '../../assets/team/falguni.png';
+import zahidul from '../../assets/team/zahidul.png';
+import fahmida from '../../assets/team/fahmida.png';
+import awpurbo from '../../assets/team/awpurbo.png';
+
 const F = {
   display:   "'Bebas Neue', sans-serif",
   condensed: "'Barlow Condensed', sans-serif",
@@ -13,7 +19,7 @@ const members = [
     name: 'Mst. Falguni Nupur',
     role: 'Managing Director',
     bio: 'Leads NN Service & Engineering Ltd. with strategic vision and strong governance. Drives sustainable growth through professionalism and technical excellence. Committed to delivering reliable, high-quality real estate and engineering solutions.',
-    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    img: falguni,
     linkedin: '#',
     email: 'mailto:md@nnsel.com',
   },
@@ -22,7 +28,7 @@ const members = [
     name: 'S.M Zahidul Islam',
     role: 'General Manager',
     bio: 'As General Manager, leads overall operations with strategic direction and strong governance. Drives organizational performance through effective leadership and data-driven decisions. Committed to excellence, accountability, and sustainable business growth.',
-    img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
+    img: zahidul,
     linkedin: '#',
     email: 'mailto:gm@nnsel.com',
   },
@@ -31,7 +37,7 @@ const members = [
     name: 'Fahmida Aziz',
     role: 'Assistant General Manager (Structural Engineer)',
     bio: 'A Structural Engineer with over eight years of experience in engineering design and research, specializing in high-rise RCC structures, seismic soil behavior, and code-compliant design.',
-    img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80',
+    img: fahmida,
     linkedin: '#',
     email: 'mailto:agm@nnsel.com',
   },
@@ -40,7 +46,7 @@ const members = [
     name: 'A.H. Awpurbo',
     role: 'Assistant General Manager (Architect)',
     bio: 'Creative problem-solver who turns dreams into buildable reality—balancing imagination, function, and rules.',
-    img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80',
+    img: awpurbo,
     linkedin: '#',
     email: 'mailto:arch@nnsel.com',
   },

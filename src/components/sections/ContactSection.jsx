@@ -145,7 +145,7 @@ export default function ContactSection() {
                 <p style={{ fontFamily: F.body, fontWeight: 300, fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>House 37, Road 15, Banani, Dhaka 1213</p>
               </div>
             </div>
-            <a href="https://maps.google.com/?q=Banani+Dhaka+Bangladesh" target="_blank" rel="noreferrer"
+            <a href="https://www.google.com/maps/search/NN+Services+%26+Engineering+Ltd+Banani+Dhaka" target="_blank" rel="noreferrer"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                 fontFamily: F.condensed, fontSize: '0.72rem', fontWeight: 700,
@@ -162,7 +162,7 @@ export default function ContactSection() {
           <div style={{ width: '100%', height: '340px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)' }}>
             <iframe
               title="NNSEL Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.5406303756684!2d90.39994!3d23.7937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a0f5de3df7%3A0x4b7b8a8b1234abcd!2sBanani%2C%20Dhaka%201213%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1620000000000!5m2!1sen!2sbd"
+              src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d3650.751640883201!2d90.4007876!3d23.7918568!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sbd!4v1777477596067!5m2!1sen!2sbd"
               width="100%" height="340"
               style={{ border: 0, display: 'block', filter: 'invert(90%) hue-rotate(180deg)' }}
               allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
