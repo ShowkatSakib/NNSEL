@@ -1,8 +1,5 @@
 import React from 'react';
-
 import AboutSection from '../components/About';
-import InteriorDesignPage from '../components/InteriorDesignPage';
-
 
 export default function Home() {
   return (
