@@ -12,6 +12,10 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+<<<<<<< HEAD
+    "react-icons": "^5.6.0",
+=======
+>>>>>>> 6645c35b5a7fd9be991c6e48ca0c1b218d4f9d63
     "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
@@ -25,6 +29,12 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+<<<<<<< HEAD
+    "postcss": "^8.5.10",
+=======
+    "postcss": "^8.5.12",
+>>>>>>> 6645c35b5a7fd9be991c6e48ca0c1b218d4f9d63
+    "tailwindcss": "^4.2.4",
     "vite": "^7.3.1"
   }
 }
