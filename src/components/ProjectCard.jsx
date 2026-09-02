@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import StatusBadge from './sections/StatusBadge';
+import StatusBadge from '../components/StatusBadge';
 
 const ProjectCard = ({ project, variant = 'two-col' }) => {
   const navigate = useNavigate();
